@@ -1,0 +1,29 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# OffCKB & Local Node data
+.offckb/
+ckb/
+data/
+*.log
+
+# Security & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+accounts.json
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
