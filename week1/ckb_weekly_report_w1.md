@@ -1,7 +1,7 @@
 ## Builder Track Weekly Report — Week 1
 
 **Name:** Hiep Thach  
-**Week Ending:** 06-20-2026 (06-14-2026 to 06-20-2026)
+**Week Ending:** 06-14-2026 to 06-20-2026
 
 ### Courses Completed
 
@@ -14,7 +14,7 @@
 ### Key Learnings
 
 - Learned the core concepts of Nervos Blockchain and CKB. Unlike Bitcoin's UTXO model, CKB uses the Cell Model, which acts similarly to UTXOs but adds the capability to store arbitrary state/data. The Lock Script defines cell ownership.
-- Mastered the Cell structure and constraints regarding `capacity`, `lock`, `type`, and `data`.
+- Understood the Cell structure and constraints regarding `capacity`, `lock`, `type`, and `data`.
 - Understood CKB Scripts and how they execute within the virtual machine.
 - Learned the transaction execution flow on CKB (destroying inputs and creating outputs).
 - Learned how to construct and send the first CKB transaction on local devnet and testnet.
@@ -24,18 +24,6 @@
 - Set up and ran a local CKB node.
 - Executed CKB transfers on local devnet and testnet. Used `ckb-cli` to inspect cells and transactions.
 - Successful testnet transaction: [View on Explorer](https://testnet.explorer.nervos.org/transaction/0xf5686e1593ee581c2b5cda616d51db78a864dbb9a70739d4179d2fdbbfa90d37).
-
-### Screenshots
-
-*(Optional: Add screenshots showing local node running or transaction CLI output)*
-<!--
-![Local Node Setup](./images/week1_node_setup.png)
-![Testnet Transaction](./images/week1_transaction.png)
--->
-
-### Challenges
-
-- None. Following the official guide and CKB Academy made the environment setup and transfer examples straightforward.
 
 ### Plan for Next Week
 
