@@ -33,7 +33,7 @@ A tDOB cell holds the digital object's content and its MIME content-type directl
 
 ### DOB ID (Type Script Args)
 To guarantee uniqueness, each DOB is assigned a unique 32-byte ID as its Type Script args:
-$$\text{TinyDOB\_ID} = \text{blake2b}(\text{first\_input\_outpoint} + \text{output\_index})$$
+`TinyDOB_ID = blake2b(first_input_outpoint + output_index)`
 * `first_input_outpoint`: The serialized OutPoint of the very first input cell in the transaction. Since live cells can only be spent once, this prevents duplicate IDs.
 * `output_index`: The index of the newly minted tDOB cell in the transaction's outputs. This allows minting multiple tDOBs in a single transaction while keeping each ID unique.
 
