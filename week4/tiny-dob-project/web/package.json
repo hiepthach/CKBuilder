@@ -1,0 +1,31 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir dist --public-url ./",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist .parcel-cache",
+    "clean:all": "rm -rf dist .parcel-cache node_modules"
+  },
+  "dependencies": {
+    "@ckb-ccc/core": "^1.16.1",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "crypto-browserify": "^3.12.1",
+    "parcel": "^2.15.4",
+    "path-browserify": "^1.0.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "typescript": "~6.0.2",
+    "vm-browserify": "^1.1.2"
+  }
+}

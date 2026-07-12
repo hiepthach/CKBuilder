@@ -1,0 +1,11 @@
+[[cells]]
+name = "tiny-dob-script"
+enable_type_id = false
+
+  [cells.location]
+  file = "/home/hiepthach/04_CKB/CKBuilder/week4/tiny-dob-project/ckb-rust-script/build/release/tiny-dob-script"
+
+[lock]
+code_hash = "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8"
+args = "0xe65f823bc5a48a38515690604e503dba4eb15d61"
+hash_type = "type"

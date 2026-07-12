@@ -1,0 +1,21 @@
+{
+  "devnet": {
+    "tiny-dob-script": {
+      "codeHash": "0x16d0ba552487384c288a6d2806009650177381e5f6eb1c7a241ff7d035d834c2",
+      "hashType": "data2",
+      "cellDeps": [
+        {
+          "cellDep": {
+            "outPoint": {
+              "txHash": "0x75cd489014aae3ab1214b632795a3e7ec61dd9bf8b642eb880efaca07ed840e1",
+              "index": 0
+            },
+            "depType": "code"
+          }
+        }
+      ]
+    }
+  },
+  "testnet": {},
+  "mainnet": {}
+}

@@ -1,0 +1,15 @@
+# OffCKB Deployment Configuration for TinyDOB Project
+# Configure your network parameters and contract pathways here.
+
+# Target Network (devnet or testnet)
+network: "devnet"
+
+# Target contract binary path to deploy
+target: "./ckb-rust-script/build/release/tiny-dob-script"
+
+# Output folder where deployment.toml and record files will be saved
+output: "./web/src/deployment"
+
+# Private key to sign the deployment transaction
+# Pre-filled with local offckb Devnet Account 3 key (42,000,000 CKB)
+privkey: "0xf4a1fc19468b51ba9d1f0f5441fa3f4d91e625b2af105e1e37cc54bf9b19c0a1"

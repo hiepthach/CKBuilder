@@ -1,0 +1,16 @@
+# Rust contract build outputs and workspace targets
+/ckb-rust-script/build/
+/ckb-rust-script/target/
+/ckb-rust-script/tests/failed_txs
+
+# Web frontend dependencies and compiler caches
+/web/node_modules/
+/web/dist/
+/web/.parcel-cache/
+/web/*.local
+
+# Logs and system files
+*.log
+.DS_Store
+.idea/
+.vscode/

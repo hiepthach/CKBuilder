@@ -1,0 +1,12 @@
+{
+  "cell_recipes": [
+    {
+      "name": "tiny-dob-script",
+      "tx_hash": "0xf347968ba415c996495dbd8c96b620a9db335311981be791540b2bfd2fc1943c",
+      "index": 0,
+      "occupied_capacity": 5378400000000,
+      "data_hash": "0x16d0ba552487384c288a6d2806009650177381e5f6eb1c7a241ff7d035d834c2"
+    }
+  ],
+  "dep_group_recipes": []
+}
