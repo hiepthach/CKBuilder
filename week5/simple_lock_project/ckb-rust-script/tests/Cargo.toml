@@ -1,0 +1,13 @@
+[package]
+name = "tests"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ckb-testtool = "1.1.1"
+ckb-hash = "0.119.0"
+ckb-types = "0.119.0"
+env_logger = "0.10"
+
+[build-dependencies]
+cc = "1.0"

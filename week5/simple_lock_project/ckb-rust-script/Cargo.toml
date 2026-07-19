@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = [
+    "contracts/hash-lock",
+    "tests"
+]
+
+[workspace.dependencies]
+ckb-std = "1.1"
+
+[profile.release]
+overflow-checks = true
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+debug-assertions = true

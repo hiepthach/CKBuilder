@@ -1,0 +1,19 @@
+{
+  "devnet": {
+    "secp256k1_blake160_sighash_all": {
+      "script": {
+        "cellDeps": [
+          {
+            "cellDep": {
+              "outPoint": {
+                "txHash": "0x4d804f1495612631da202fe9902fa9899118554b08138cfe5dfb50e1ede76293",
+                "index": 0
+              },
+              "depType": "depGroup"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
