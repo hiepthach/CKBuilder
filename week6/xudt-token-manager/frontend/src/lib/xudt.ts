@@ -1,15 +1,16 @@
 /**
  * @fileoverview xUDT Token utility functions for minting, balance queries, and transfers.
- * Uses CCC SDK core primitives (KnownScript.XUdt, findCells, numLeToBytes) to interact
- * with xUDT fungible tokens on CKB Testnet.
+ * Integrates `@ckb-ccc/udt` and CCC SDK core primitives (`KnownScript.XUdt`, `numLeToBytes`, `udtBalanceFrom`)
+ * to interact with xUDT fungible tokens on CKB Testnet.
  *
  * References:
+ * - `@ckb-ccc/udt` package: https://docs.ckbccc.com/en/docs/packages/protocol-sdks/udt
  * - xUDT RFC: https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0052-extensible-udt/0052-extensible-udt.md
- * - CCC SDK Docs: https://docs.ckbccc.com/en/docs/packages/protocol-sdks/udt
  * - Token Standards: https://docs.nervos.org/docs/assets-token-standards/assets-overview
  */
 
 import * as ccc from "@ckb-ccc/core";
+import { Udt } from "@ckb-ccc/udt";
 
 /** Default token symbol displayed in the UI */
 export const TOKEN_SYMBOL = "MYTKN";
@@ -26,12 +27,12 @@ export const FAUCET_AMOUNT = BigInt(500);
 export const MIN_UDT_CAPACITY_CKB = "142";
 
 // ---------------------------------------------------------------------------
-// Encoding / Decoding helpers
+// Encoding / Decoding helpers (using CCC built-ins)
 // ---------------------------------------------------------------------------
 
 /**
  * Encode a BigInt token amount into 16-byte uint128 little-endian hex string.
- * This is the on-chain storage format for xUDT / sUDT output data.
+ * Uses `ccc.numLeToBytes` from `@ckb-ccc/core`.
  *
  * @param amount - Token amount as BigInt (must be non-negative, fits in uint128)
  * @returns Hex-encoded string prefixed with "0x" (34 chars total)
@@ -45,46 +46,41 @@ export function encodeUdtAmount(amount: bigint): string {
     throw new Error("Token amount exceeds uint128 max value");
   }
 
-  // 2. Convert to 16-byte little-endian buffer
-  const buf = new Uint8Array(16);
-  let remaining = amount;
-  for (let i = 0; i < 16; i++) {
-    buf[i] = Number(remaining & 0xffn);
-    remaining >>= 8n;
-  }
-
-  // 3. Convert buffer to hex string
-  const hexChars = Array.from(buf, (b) => b.toString(16).padStart(2, "0"));
-  return "0x" + hexChars.join("");
+  // 2. Convert to 16-byte little-endian hex via CCC helper
+  return ccc.hexFrom(ccc.numLeToBytes(amount, 16));
 }
 
 /**
  * Decode a hex-encoded uint128 little-endian value from cell output data
- * back into a BigInt token amount.
+ * back into a BigInt token amount using `ccc.udtBalanceFrom`.
  *
- * @param hexData - Hex string from outputData (at least 16 bytes / 32 hex chars after "0x")
+ * @param hexData - Hex string or Bytes from outputData
  * @returns Token amount as BigInt
  */
-export function decodeUdtAmount(hexData: string): bigint {
-  // 1. Strip "0x" prefix if present
-  const hex = hexData.startsWith("0x") ? hexData.slice(2) : hexData;
+export function decodeUdtAmount(hexData: ccc.HexLike): bigint {
+  // 1. Use CCC built-in udtBalanceFrom helper to parse 16-byte uint128 LE
+  return ccc.udtBalanceFrom(hexData);
+}
 
-  // 2. Take first 32 hex chars (16 bytes for uint128)
-  const tokenHex = hex.slice(0, 32);
-  if (tokenHex.length < 32) {
-    throw new Error(
-      `Invalid UDT data: expected at least 16 bytes, got ${tokenHex.length / 2}`
-    );
-  }
+// ---------------------------------------------------------------------------
+// `@ckb-ccc/udt` helper factory
+// ---------------------------------------------------------------------------
 
-  // 3. Parse as little-endian uint128
-  let result = 0n;
-  for (let i = 0; i < 16; i++) {
-    const byte = parseInt(tokenHex.slice(i * 2, i * 2 + 2), 16);
-    result += BigInt(byte) << BigInt(i * 8);
-  }
-
-  return result;
+/**
+ * Instantiate a `@ckb-ccc/udt` SDK instance for high-level token operations.
+ *
+ * @param xudtTypeScript - The xUDT Type Script identifying this token
+ * @returns An instance of the `Udt` class from `@ckb-ccc/udt`
+ */
+export function createUdtInstance(
+  xudtTypeScript: ccc.Script,
+  codeOutPoint?: ccc.OutPointLike
+): Udt {
+  const defaultOutPoint: ccc.OutPointLike = codeOutPoint ?? {
+    txHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+    index: 0,
+  };
+  return new Udt(defaultOutPoint, xudtTypeScript);
 }
 
 // ---------------------------------------------------------------------------
@@ -148,10 +144,9 @@ export async function getUdtBalance(
       script: xudtTypeScript,
     },
   })) {
-    // 2. Decode the uint128 token amount from cell output data
+    // 2. Decode the uint128 token amount from cell output data using ccc.udtBalanceFrom
     if (cell.outputData && cell.outputData.length >= 34) {
-      // "0x" + 32 hex chars
-      const amount = decodeUdtAmount(cell.outputData);
+      const amount = ccc.udtBalanceFrom(cell.outputData);
       totalBalance += amount;
       cellCount++;
     }
@@ -165,8 +160,9 @@ export async function getUdtBalance(
 // ---------------------------------------------------------------------------
 
 /**
- * Mint xUDT tokens to the connected wallet. The signer's own lock script hash
- * is used as the xUDT issuer args, which authorizes the mint operation.
+ * Mint xUDT tokens to the connected wallet using `@ckb-ccc/udt` / CCC SDK.
+ * The signer's own lock script hash is used as the xUDT issuer args,
+ * which authorizes the mint operation.
  *
  * @param signer - CCC Signer from the connected wallet
  * @param amount - Number of tokens to mint (default: FAUCET_AMOUNT)
@@ -184,8 +180,8 @@ export async function mintXudt(
   // 2. Build the xUDT Type Script using signer's lock hash as issuer args
   const xudtType = await buildXudtTypeScript(client, signerLock);
 
-  // 3. Encode the token amount as uint128 little-endian hex
-  const encodedAmount = encodeUdtAmount(amount);
+  // 3. Encode the token amount as uint128 little-endian hex via CCC
+  const encodedAmount = ccc.hexFrom(ccc.numLeToBytes(amount, 16));
 
   // 4. Construct the mint transaction with one output cell containing the tokens
   const tx = ccc.Transaction.from({
@@ -204,10 +200,10 @@ export async function mintXudt(
   // 6. Automatically gather CKB input cells to cover capacity requirements
   await tx.completeInputsByCapacity(signer);
 
-  // 6. Calculate transaction fee and create change output
+  // 7. Calculate transaction fee and create change output
   await tx.completeFeeBy(signer, 1000);
 
-  // 7. Sign and broadcast the transaction
+  // 8. Sign and broadcast the transaction
   const txHash = await signer.sendTransaction(tx);
   return txHash;
 }
@@ -242,7 +238,7 @@ export async function transferXudt(
   const { script: senderLock } = await signer.getRecommendedAddressObj();
 
   // 3. Encode the transfer amount as uint128 LE
-  const encodedAmount = encodeUdtAmount(amount);
+  const encodedAmount = ccc.hexFrom(ccc.numLeToBytes(amount, 16));
 
   // 4. Collect sender's UDT cells until we have enough tokens
   let collectedAmount = 0n;
@@ -256,7 +252,7 @@ export async function transferXudt(
     },
   })) {
     if (cell.outputData && cell.outputData.length >= 34) {
-      const cellAmount = decodeUdtAmount(cell.outputData);
+      const cellAmount = ccc.udtBalanceFrom(cell.outputData);
       collectedAmount += cellAmount;
       collectedCells.push(cell);
 
@@ -287,7 +283,7 @@ export async function transferXudt(
       lock: senderLock,
       type: xudtTypeScript,
     });
-    outputsData.push(encodeUdtAmount(changeAmount));
+    outputsData.push(ccc.hexFrom(ccc.numLeToBytes(changeAmount, 16)));
   }
 
   // 8. Construct the transaction with collected UDT cells as inputs
@@ -308,13 +304,13 @@ export async function transferXudt(
     );
   }
 
-  // 10. Gather additional CKB inputs to cover capacity for new output cells
+  // 11. Gather additional CKB inputs to cover capacity for new output cells
   await tx.completeInputsByCapacity(signer);
 
-  // 11. Calculate and apply transaction fee
+  // 12. Calculate and apply transaction fee
   await tx.completeFeeBy(signer, 1000);
 
-  // 12. Sign and broadcast
+  // 13. Sign and broadcast
   const txHash = await signer.sendTransaction(tx);
   return txHash;
 }

@@ -22,7 +22,7 @@
 | 3 | CKB Scripts (Lock & Type), Fungible Token (xUDT) | Done | [Report](./week3/ckb_weekly_report_w3.md) |
 | 4 | DOB/Spore Protocol, Rust Script Development, Debugging & Deployment | Done | [Report](./week4/ckb_weekly_report_w4.md) |
 | 5 | L1 Developer Training, Simple Lock Script, CCC Playground | Done | [Report](./week5/ckb_weekly_report_w5.md) |
-| 6 | CCC Mastery, Community Manuals | In Progress | — |
+| 6 | CCC Mastery, Community Manuals, Spore & xUDT | Done | [Report](./week6/ckb_weekly_report_w6.md) |
 | 7–12 | Advanced Topics & Capstone Project | Planned | — |
 
 ---
@@ -74,11 +74,24 @@ CKBuilder/
         ├── ckb-rust-script/        # On-chain Hash Lock Rust contract
         ├── frontend/               # React + CCC SDK Frontend
         └── README.md               # See simple_lock_project for details
+│
+└── week6/                          # CCC SDK Deep Dive, xUDT, and Spore DOBs
+    ├── ckb_weekly_report_w6.md
+    ├── mini-tip-jar/               # Tip Jar using CCC & React
+    ├── xudt-token-manager/         # xUDT Token Faucet & Manager UI
+    └── spore-badge-platform/       # Spore Protocol Badge Platform
 ```
 
 ---
 
 ## Key Projects
+
+### Week 6 — CCC SDK Deep Dive (Tip Jar, xUDT, Spore)
+
+Practiced utilizing CCC SDK to interact with various layer 1 assets and protocols on CKB Testnet.
+- **[Mini Tip Jar](./week6/mini-tip-jar/)**: A straightforward web app demonstrating how to connect JoyID and send CKB tips.
+- **[xUDT Token Manager](./week6/xudt-token-manager/)**: A management UI to act as a faucet, dashboard, and transfer interface for Extensible UDT (xUDT).
+- **[Spore Badge Platform](./week6/spore-badge-platform/)**: A platform for creating and gallery-viewing on-chain badges using the Spore Protocol (DOBs).
 
 ### Week 5 — My Hash Lock dApp
 
