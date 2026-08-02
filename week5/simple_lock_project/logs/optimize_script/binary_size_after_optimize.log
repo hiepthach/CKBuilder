@@ -1,0 +1,6 @@
+$ make build
+Building hash-lock contract with CC=clang-19...
+TARGET_CC="clang-19" TARGET_AR="llvm-ar-19" \
+RUSTFLAGS="-C target-feature=+zba,+zbb,+zbc,+zbs -C passes=lower-atomic -C link-arg=-s" cargo build --target riscv64imac-unknown-none-elf --release -p hash-lock
+    Finished `release` profile [optimized] target(s) in 0.04s
+Build complete. Binary size: 28352 bytes

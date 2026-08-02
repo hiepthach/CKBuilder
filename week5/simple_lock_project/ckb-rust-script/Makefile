@@ -21,6 +21,18 @@ build:
 	@cp target/$(TARGET)/release/hash-lock $(BUILD_DIR)/
 	@echo "Build complete. Binary size: $$(wc -c < $(BUILD_DIR)/hash-lock) bytes"
 
+debug:
+	@if [ -z "$(CLANG)" ]; then \
+		echo "Error: Cannot find clang 16+. Please install clang."; \
+		exit 1; \
+	fi
+	@echo "Building hash-lock contract in DEBUG mode with CC=$(CLANG)..."
+	@mkdir -p build/debug
+	TARGET_CC="$(CLANG)" TARGET_AR="$(AR)" \
+	RUSTFLAGS="$(RUSTFLAGS)" cargo build --target $(TARGET) -p hash-lock
+	@cp target/$(TARGET)/debug/hash-lock build/debug/
+	@echo "Debug build complete. Binary size: $$(wc -c < build/debug/hash-lock) bytes"
+
 test:
 	@echo "Running tests..."
 	cargo test -p tests

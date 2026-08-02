@@ -25,6 +25,14 @@ use ckb_std::{
 use blake2b_ref::Blake2bBuilder;
 use molecule::prelude::Entity;
 
+/// Custom debug macro that only emits logs when built with debug assertions
+macro_rules! debug {
+    ($($arg:tt)*) => {
+        #[cfg(debug_assertions)]
+        ckb_std::debug!($($arg)*);
+    };
+}
+
 #[allow(dead_code)]
 #[allow(unused_imports)]
 mod hash_lock;
@@ -76,22 +84,22 @@ impl From<SysError> for Error {
 /// 4. Computes the Blake2b hash of the preimage using `ckb-default-hash`.
 /// 5. Compares the computed hash with the expected hash.
 fn main() -> Result<(), Error> {
-    ckb_std::debug!("Starting hash-lock verification...");
+    debug!("Starting hash-lock verification...");
 
     // 1. Load the script args
     // The script args should exactly be the 32-byte expected hash.
     let script = load_script()?;
     let args: Bytes = script.args().unpack();
-    ckb_std::debug!("Loaded script args, length: {}", args.len());
+    debug!("Loaded script args, length: {}", args.len());
     
     if args.len() != 32 {
-        ckb_std::debug!("Error: Invalid args length! Expected 32 bytes.");
+        debug!("Error: Invalid args length! Expected 32 bytes.");
         return Err(Error::InvalidArgsLength);
     }
     let expected_hash = args.as_ref();
 
     // 2. Load WitnessArgs from the first witness in the input group
-    ckb_std::debug!("Loading witness args from group input 0...");
+    debug!("Loading witness args from group input 0...");
     let witness_args = load_witness_args(0, Source::GroupInput)?;
 
     // 3. Extract the preimage from the `lock` field of the WitnessArgs
@@ -99,7 +107,7 @@ fn main() -> Result<(), Error> {
         .lock()
         .to_opt()
         .ok_or_else(|| {
-            ckb_std::debug!("Error: Witness args lock field is empty!");
+            debug!("Error: Witness args lock field is empty!");
             Error::WitnessEmpty
         })?
         .unpack();
@@ -107,13 +115,13 @@ fn main() -> Result<(), Error> {
     // Parse the Molecule struct
     let witness_payload = hash_lock::HashLockWitness::from_slice(lock_bytes.as_ref())
         .map_err(|_| {
-            ckb_std::debug!("Error: Invalid HashLockWitness encoding!");
+            debug!("Error: Invalid HashLockWitness encoding!");
             Error::Encoding
         })?;
     
     let preimage = witness_payload.preimage();
     let preimage_bytes = preimage.as_slice();
-    ckb_std::debug!("Extracted preimage, length: {}", preimage_bytes.len());
+    debug!("Extracted preimage, length: {}", preimage_bytes.len());
 
     // 4. Hash the preimage using CKB's default Blake2b hasher
     let mut actual_hash = [0u8; 32];
@@ -122,16 +130,16 @@ fn main() -> Result<(), Error> {
 
     blake2b.finalize(&mut actual_hash);
     
-    ckb_std::debug!("Expected hash: {:?}", expected_hash);
-    ckb_std::debug!("Actual hash: {:?}", actual_hash);
+    debug!("Expected hash: {:?}", expected_hash);
+    debug!("Actual hash: {:?}", actual_hash);
 
     // 5. Compare the hashes
     if actual_hash != expected_hash {
-        ckb_std::debug!("Error: Hash mismatch!");
+        debug!("Error: Hash mismatch!");
         return Err(Error::HashMismatch);
     }
 
-    ckb_std::debug!("Verification successful!");
+    debug!("Verification successful!");
     // Hash matches, unlock successful!
     Ok(())
 }

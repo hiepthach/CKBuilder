@@ -14,4 +14,4 @@ strip = true
 opt-level = "z"
 lto = true
 codegen-units = 1
-debug-assertions = true
+panic = "abort"

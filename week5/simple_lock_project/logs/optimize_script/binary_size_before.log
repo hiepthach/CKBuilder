@@ -1,0 +1,7 @@
+$ make build
+Building hash-lock contract with CC=clang-19...
+TARGET_CC="clang-19" TARGET_AR="llvm-ar-19" \
+RUSTFLAGS="-C target-feature=+zba,+zbb,+zbc,+zbs -C passes=lower-atomic -C link-arg=-s" cargo build --target riscv64imac-unknown-none-elf --release -p hash-lock
+   Compiling hash-lock v0.1.0 (/home/hiepthach/04_CKB/CKBuilder/week5/simple_lock_project/ckb-rust-script/contracts/hash-lock)
+    Finished `release` profile [optimized] target(s) in 0.73s
+Build complete. Binary size: 51104 bytes
