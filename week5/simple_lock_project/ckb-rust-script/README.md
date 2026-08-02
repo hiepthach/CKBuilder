@@ -12,8 +12,8 @@ Unlike the reference project which uses the `ckb-js-vm` and TypeScript, this imp
 
 The `hash-lock` script provides a simple hash-based locking mechanism:
 - When locking CKB, the `args` of the lock script contains a 32-byte Blake2b-256 hash.
-- To unlock the CKB, the user must provide the corresponding preimage (secret text) in the `WitnessArgs.lock` field.
-- During transaction verification on-chain, the CKB-VM runs this contract, which extracts the preimage from the witness, hashes it, and compares it with the expected hash stored in `args`. If they match, the transaction is approved (exit code `0`).
+- To unlock the CKB, the user must provide the corresponding preimage (secret text) packed inside a Molecule schema (`HashLockWitness`) in the `WitnessArgs.lock` field.
+- During transaction verification on-chain, the CKB-VM runs this contract, which extracts the preimage from the witness using Molecule's zero-copy deserialization, hashes it, and compares it with the expected hash stored in `args`. If they match, the transaction is approved (exit code `0`).
 
 ```mermaid
 flowchart TD
@@ -21,7 +21,7 @@ flowchart TD
     LoadArgs --> VerifyArgs{"Args == 32 bytes?"}
     VerifyArgs -- No --> ErrArgs["Return Err: InvalidArgsLength"]
     VerifyArgs -- Yes --> LoadWitness["2. Load WitnessArgs from GroupInput"]
-    LoadWitness --> ExtractPreimage["3. Extract Preimage from WitnessArgs.lock"]
+    LoadWitness --> ExtractPreimage["3. Extract Preimage from WitnessArgs.lock (via Molecule)"]
     ExtractPreimage --> Hash["4. Blake2b Hash Preimage using 'ckb-default-hash'"]
     Hash --> Compare{"5. Actual Hash == Expected Hash?"}
     Compare -- No --> ErrHash["Return Err: HashMismatch"]

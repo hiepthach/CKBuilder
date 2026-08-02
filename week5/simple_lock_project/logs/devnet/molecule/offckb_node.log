@@ -1,0 +1,38 @@
+$ offckb node
+Launching CKB devnet Node...
+CKB:
+2026-08-02 05:08:08.093 +00:00 main WARN ckb_network::network  Customized supported protocols: [Ping, Discovery, Identify, Feeler, DisconnectMessage, Sync, Relay, Time, Alert, LightClient, Filter]
+
+CKB devnet RPC Proxy server running on http://127.0.0.1:28114
+(node:62917) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+RPC Req:  get_cells
+RPC Req:  get_cells
+RPC Req:  send_transaction
+RPC Req:  store tx 0x84ef3632b429161a5a1e871d47fa1a23d8b94f4bf3fbbcef82921c1326bd2322
+RPC Req:  get_transaction
+RPC Req:  get_transaction
+RPC Req:  get_transaction
+RPC Req:  get_transaction
+CKB:
+2026-08-02 05:11:50.753 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Starting hash-lock verification...
+
+CKB:
+2026-08-02 05:11:50.753 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Loaded script args, length: 32
+2026-08-02 05:11:50.753 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Loading witness args from group input 0...
+2026-08-02 05:11:50.753 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Extracted preimage, length: 32
+2026-08-02 05:11:50.754 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Expected hash: [87, 63, 59, 171, 73, 191, 27, 155, 166, 20, 36, 240, 7, 54, 245, 189, 144, 178, 179, 65, 238, 197, 135, 152, 149, 206, 245, 163, 111, 11, 14, 38]
+2026-08-02 05:11:50.754 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Actual hash: [75, 58, 30, 44, 173, 229, 202, 151, 110, 174, 217, 141, 217, 102, 219, 43, 238, 173, 147, 165, 155, 160, 71, 153, 113, 13, 74, 232, 243, 72, 156, 3]
+2026-08-02 05:11:50.754 +00:00 GlobalRt-10 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Error: Hash mismatch!
+2026-08-02 05:11:50.754 +00:00 GlobalRt-10 INFO ckb_script::verify::logging  Error validating script group Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) of transaction Byte32(0x0c5e289f1e3d6667b31f3ea402b821d04ef7dcaf59c824af72b0b56399c90ceb): ValidationFailure: see error code 7 on page https://nervosnetwork.github.io/ckb-script-error-codes/by-data-hash/ba15b766f7712abf34abc6689205b44b91379376915b8627862eebd3aeb761b4.html#7
+
+CKB:
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Starting hash-lock verification...
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Loaded script args, length: 32
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Loading witness args from group input 0...
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Extracted preimage, length: 32
+
+CKB:
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Expected hash: [87, 63, 59, 171, 73, 191, 27, 155, 166, 20, 36, 240, 7, 54, 245, 189, 144, 178, 179, 65, 238, 197, 135, 152, 149, 206, 245, 163, 111, 11, 14, 38]
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Actual hash: [87, 63, 59, 171, 73, 191, 27, 155, 166, 20, 36, 240, 7, 54, 245, 189, 144, 178, 179, 65, 238, 197, 135, 152, 149, 206, 245, 163, 111, 11, 14, 38]
+2026-08-02 05:12:02.821 +00:00 GlobalRt-3 DEBUG ckb_script::verify  script group: Byte32(0x27ef98c93707ae3b3f1c5d37ae2fa8595d4a7f08568158e3e1e4ff5b234b49f8) DEBUG OUTPUT: Verification successful!

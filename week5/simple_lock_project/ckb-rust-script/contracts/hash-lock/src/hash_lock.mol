@@ -1,0 +1,6 @@
+array Byte32 [byte; 32];
+
+table HashLockWitness {
+    preimage: Byte32,
+    message: byte,
+}

@@ -23,7 +23,11 @@ use ckb_std::{
     high_level::{load_script, load_witness_args},
 };
 use blake2b_ref::Blake2bBuilder;
+use molecule::prelude::Entity;
 
+#[allow(dead_code)]
+#[allow(unused_imports)]
+mod hash_lock;
 // Allocate memory (required for no_std environment)
 ckb_std::entry!(program_entry);
 default_alloc!(4096, 2048, 64);
@@ -100,13 +104,22 @@ fn main() -> Result<(), Error> {
         })?
         .unpack();
     
-    let preimage = lock_bytes.as_ref();
-    ckb_std::debug!("Extracted preimage, length: {}", preimage.len());
+    // Parse the Molecule struct
+    let witness_payload = hash_lock::HashLockWitness::from_slice(lock_bytes.as_ref())
+        .map_err(|_| {
+            ckb_std::debug!("Error: Invalid HashLockWitness encoding!");
+            Error::Encoding
+        })?;
+    
+    let preimage = witness_payload.preimage();
+    let preimage_bytes = preimage.as_slice();
+    ckb_std::debug!("Extracted preimage, length: {}", preimage_bytes.len());
 
     // 4. Hash the preimage using CKB's default Blake2b hasher
     let mut actual_hash = [0u8; 32];
     let mut blake2b = Blake2bBuilder::new(32).personal(b"ckb-default-hash").build();
-    blake2b.update(preimage);
+    blake2b.update(preimage_bytes);
+
     blake2b.finalize(&mut actual_hash);
     
     ckb_std::debug!("Expected hash: {:?}", expected_hash);

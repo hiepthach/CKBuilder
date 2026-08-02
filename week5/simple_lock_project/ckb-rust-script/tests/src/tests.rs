@@ -22,6 +22,30 @@ fn init_log() {
     let _ = env_logger::builder().is_test(true).try_init();
 }
 
+fn pad_preimage(preimage: &[u8]) -> [u8; 32] {
+    let mut padded = [0u8; 32];
+    let len = std::cmp::min(preimage.len(), 32);
+    padded[..len].copy_from_slice(&preimage[..len]);
+    padded
+}
+
+fn build_witness_payload(preimage: &[u8]) -> Bytes {
+    let padded_preimage = pad_preimage(preimage);
+    let mut payload = Vec::with_capacity(45);
+    // Total size: 45 bytes (4 + 4 + 4 + 32 + 1)
+    payload.extend_from_slice(&45u32.to_le_bytes());
+    // Offset 1: 12
+    payload.extend_from_slice(&12u32.to_le_bytes());
+    // Offset 2: 44
+    payload.extend_from_slice(&44u32.to_le_bytes());
+    // Field 1: 32 bytes preimage
+    payload.extend_from_slice(&padded_preimage);
+    // Field 2: 1 byte message (0x00)
+    payload.push(0);
+
+    Bytes::from(payload)
+}
+
 #[test]
 fn test_unlock_success() {
     init_log();
@@ -31,7 +55,8 @@ fn test_unlock_success() {
 
     // Setup preimage and expected hash
     let preimage = b"Hello World";
-    let expected_hash = ckb_hash::blake2b_256(preimage);
+    let padded_preimage = pad_preimage(preimage);
+    let expected_hash = ckb_hash::blake2b_256(&padded_preimage);
 
     // Create the lock script
     let lock_script = context
@@ -59,9 +84,10 @@ fn test_unlock_success() {
     ];
     let outputs_data = vec![Bytes::new()];
 
-    // Create WitnessArgs with the preimage
+    // Create WitnessArgs with the Molecule payload
+    let witness_payload = build_witness_payload(preimage);
     let witness_args = WitnessArgs::new_builder()
-        .lock(Some(Bytes::from(preimage.to_vec())).pack())
+        .lock(Some(witness_payload).pack())
         .build();
 
     // Build the transaction
@@ -96,7 +122,8 @@ fn test_unlock_wrong_preimage() {
 
     // Setup preimage and expected hash
     let correct_preimage = b"Hello World";
-    let expected_hash = ckb_hash::blake2b_256(correct_preimage);
+    let padded_correct_preimage = pad_preimage(correct_preimage);
+    let expected_hash = ckb_hash::blake2b_256(&padded_correct_preimage);
     
     let wrong_preimage = b"Wrong Secret";
 
@@ -123,9 +150,10 @@ fn test_unlock_wrong_preimage() {
     ];
     let outputs_data = vec![Bytes::new()];
 
-    // Pass the wrong preimage
+    // Pass the wrong preimage via Molecule encoding
+    let witness_payload = build_witness_payload(wrong_preimage);
     let witness_args = WitnessArgs::new_builder()
-        .lock(Some(Bytes::from(wrong_preimage.to_vec())).pack())
+        .lock(Some(witness_payload).pack())
         .build();
 
     let tx = TransactionBuilder::default()
@@ -157,7 +185,8 @@ fn test_unlock_empty_witness() {
     let out_point = context.deploy_cell(contract_bin);
 
     let preimage = b"Hello World";
-    let expected_hash = ckb_hash::blake2b_256(preimage);
+    let padded_preimage = pad_preimage(preimage);
+    let expected_hash = ckb_hash::blake2b_256(&padded_preimage);
 
     let lock_script = context
         .build_script(&out_point, Bytes::from(expected_hash.to_vec()))
@@ -238,8 +267,9 @@ fn test_unlock_invalid_args_length() {
     ];
     let outputs_data = vec![Bytes::new()];
 
+    let witness_payload = build_witness_payload(b"Some text");
     let witness_args = WitnessArgs::new_builder()
-        .lock(Some(Bytes::from(b"Some text".to_vec())).pack())
+        .lock(Some(witness_payload).pack())
         .build();
 
     let tx = TransactionBuilder::default()

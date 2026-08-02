@@ -46,7 +46,7 @@ sequenceDiagram
 ### Components
 1. **ckb-rust-script/**: The On-chain Rust Smart Contract.
    - Implements a basic Hash Lock.
-   - Requires the user to provide a plaintext password in the `WitnessArgs.lock` field that hashes (using Blake2b) to the 32-byte arguments embedded in the Lock Script.
+   - Requires the user to provide a plaintext password, packed into a Molecule schema (`HashLockWitness`), in the `WitnessArgs.lock` field that hashes (using Blake2b) to the 32-byte arguments embedded in the Lock Script.
    - Built on `ckb-std = "1.1"` without C-dependencies to simplify RISC-V cross-compilation.
 2. **frontend/**: The Off-chain Frontend Application.
    - Built with Vite, React, and TypeScript.
@@ -58,6 +58,7 @@ sequenceDiagram
 ## Features
 - **Native Rust Contract**: Highly optimized CKB-VM RISC-V contract for hash verification.
 - **Custom Lock Script**: Demonstrates how to create and unlock a custom script using `WitnessArgs`.
+- **Molecule Serialization**: Utilizes Molecule schemas for structured, zero-copy deserialization of the witness payload.
 - **Wallet Agnostic**: Powered by CCC SDK, allowing connection with **JoyID** (FaceID/WebAuthn), MetaMask, UniSat, etc.
 - **Network Switcher**: Easily toggle between CKB Testnet (Real Wallets) and Devnet (Local node).
 - **Glassmorphism UI**: Beautiful, modern frontend design built with React & Vite.
@@ -86,7 +87,7 @@ simple_lock_project/
 ## Tech Stack & Tools
 - **Languages:** Rust (Smart Contract), TypeScript (Frontend), CSS (Styling)
 - **Frameworks:** React, Vite
-- **Libraries:** `@ckb-ccc/core` (dApp SDK for CKB), `ckb-std` (Rust std library for CKB VM)
+- **Libraries:** `@ckb-ccc/core` (dApp SDK for CKB), `ckb-std` (Rust std library for CKB VM), `molecule`
 - **Tools:** `offckb` (Local CKB Node & CLI toolkit), `cargo`, `clang`
 
 ## Getting Started

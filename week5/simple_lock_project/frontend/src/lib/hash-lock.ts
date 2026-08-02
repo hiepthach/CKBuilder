@@ -10,6 +10,26 @@
 import { ccc } from "@ckb-ccc/core";
 import scriptsData from "../deployment/scripts.json";
 
+// Define the Molecule schema corresponding to the contract
+const HashLockWitness = ccc.mol.table({
+  preimage: ccc.mol.Byte32,
+  message: ccc.mol.Byte,
+});
+
+/**
+ * Helper function to pad the password to exactly 32 bytes
+ * (Since our schema defines preimage as Byte32)
+ */
+function padPassword(password: string): Uint8Array {
+  const pwdBytes = ccc.bytesFrom(password, "utf8");
+  if (pwdBytes.length > 32) {
+    throw new Error("Password too long (max 32 bytes)");
+  }
+  const padded = new Uint8Array(32);
+  padded.set(pwdBytes);
+  return padded;
+}
+
 /**
  * Helper to get the correct config based on network.
  * Extracts `codeHash`, `hashType`, and `cellDeps` of the deployed script.
@@ -47,8 +67,8 @@ export function getHashLockConfig(isTestnet: boolean) {
  * @returns {string} The 32-byte hash string in hex format.
  */
 export function hashPassword(password: string): string {
-  // Convert string to bytes
-  const pwdBytes = ccc.bytesFrom(password, "utf8");
+  // Use the 32-byte padded password to match the Molecule data on the contract
+  const pwdBytes = padPassword(password);
   // CKB default blake2b hash personal is "ckb-default-hash"
   return ccc.hexFrom(ccc.hashCkb(pwdBytes));
 }
@@ -131,11 +151,17 @@ export async function buildUnlockTx(
     }],
   });
 
-  // 2. Add the preimage (plaintext password) to the witness.
-  // The Hash Lock contract (in Rust) expects the preimage to be in WitnessArgs.lock
-  const pwdBytes = ccc.bytesFrom(password, "utf8");
+  // 2. Add the preimage (plaintext password) to the witness using Molecule
+  const pwdBytes = padPassword(password);
+  
+  // Pack the data using the Molecule schema
+  const witnessPayload = HashLockWitness.encode({
+    preimage: pwdBytes,
+    message: "0x00", // Send an accompanying message (e.g., 0x00)
+  });
+
   const witnessArgs = ccc.WitnessArgs.from({
-    lock: pwdBytes,
+    lock: witnessPayload,
   });
   
   // Add witness to the same index as the input (index 0)

@@ -1,0 +1,30 @@
+$ bash scripts/deploy.sh devnet
+Deploying to network: devnet
+Building contracts...
+Building hash-lock contract with CC=clang-19...
+TARGET_CC="clang-19" TARGET_AR="llvm-ar-19" \
+RUSTFLAGS="-C target-feature=+zba,+zbb,+zbc,+zbs -C passes=lower-atomic -C link-arg=-s" cargo build --target riscv64imac-unknown-none-elf --release -p hash-lock
+    Finished `release` profile [optimized] target(s) in 0.05s
+Build complete. Binary size: 51104 bytes
+Deploying with offckb...
+🚀 Preparing to deploy 1 contract(s):
+   📄 hash-lock
+
+   📁 Deployment artifacts will be saved to: /home/hiepthach/04_CKB/CKBuilder/week5/simple_lock_project/ckb-rust-script/deployment
+   🌐 Network: devnet
+   🔑 Using default private key
+   🔄 Type ID: disabled (immutable)
+contract hash-lock deployed, tx hash: 0x84ef3632b429161a5a1e871d47fa1a23d8b94f4bf3fbbcef82921c1326bd2322
+wait for tx confirmed on-chain...
+tx committed.
+
+📦 Saving deployment artifacts for 1 contract(s)...
+- 📄 Saving artifacts for hash-lock...
+- hash-lock deployment.toml file /home/hiepthach/04_CKB/CKBuilder/week5/simple_lock_project/ckb-rust-script/deployment/devnet/hash-lock/deployment.toml generated successfully.
+- Migration json file /home/hiepthach/04_CKB/CKBuilder/week5/simple_lock_project/ckb-rust-script/deployment/devnet/hash-lock/migrations/2026-08-02-120836.json generated successfully.
+- ✅ Successfully saved artifacts for hash-lock
+- 📄 Script info file generated: /home/hiepthach/04_CKB/CKBuilder/week5/simple_lock_project/ckb-rust-script/deployment/scripts.json
+
+🎉 All deployment artifacts saved successfully!
+Copying deployment configs to frontend...
+Deployment complete! Frontend config updated.

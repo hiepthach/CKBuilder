@@ -1,0 +1,6 @@
+$ ckb-debugger --bin target/riscv64imac-unknown-none-elf/release/hash-lock
+Script log: Starting hash-lock verification...
+Script log: Loaded script args, length: 0
+Script log: Error: Invalid args length! Expected 32 bytes.
+Run result: 5
+All cycles: 32506(31.7K)

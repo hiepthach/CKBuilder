@@ -12,7 +12,7 @@ out/
 .offckb/
 ckb/
 data/
-*.log
+target/
 
 # Security & Secrets
 .env
