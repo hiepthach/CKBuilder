@@ -23,7 +23,8 @@
 | 4 | DOB/Spore Protocol, Rust Script Development, Debugging & Deployment | Done | [Report](./week4/ckb_weekly_report_w4.md) |
 | 5 | L1 Developer Training, Simple Lock Script, CCC Playground | Done | [Report](./week5/ckb_weekly_report_w5.md) |
 | 6 | CCC Mastery, Community Manuals, Spore & xUDT | Done | [Report](./week6/ckb_weekly_report_w6.md) |
-| 7–12 | Advanced Topics & Capstone Project | Planned | — |
+| 7 | CKB-VM Deep Dive, Script Optimization, Molecule Serialization | Done | [Report](./week7/ckb_weekly_report_w7.md) |
+| 8–12 | Advanced Topics & Capstone Project | Planned | — |
 
 ---
 
@@ -80,11 +81,29 @@ CKBuilder/
     ├── mini-tip-jar/               # Tip Jar using CCC & React
     ├── xudt-token-manager/         # xUDT Token Faucet & Manager UI
     └── spore-badge-platform/       # Spore Protocol Badge Platform
+│
+└── week7/                          # CKB-VM Deep Dive, Script Optimization, Molecule
+    ├── ckb_weekly_report_w7.md
+    ├── ckb_vm_deep_dive.md         # Comprehensive CKB-VM guide
+    ├── ckb_vm_optimize_practice.md  # Script optimization practice
+    └── molecule_practice_simple_lock.md  # Molecule serialization practice
 ```
 
 ---
 
 ## Key Projects
+
+### Week 7 — CKB-VM Deep Dive & Script Optimization
+
+Dived deep into CKB-VM architecture, syscalls, cycle costs, and applied optimization techniques to real contracts.
+
+**What was done:**
+- Studied CKB-VM execution model, RISC-V `rv64imc` instruction set, W^X memory model, and syscall architecture.
+- Applied binary size optimization (44.5% reduction) and cycle optimization (65% reduction) to the `hash-lock` contract.
+- Practiced Molecule serialization with zero-copy deserialization for structured on-chain data.
+- Created comprehensive documentation on CKB-VM internals and optimization best practices.
+
+> See details in [week7/ckb_weekly_report_w7.md](./week7/ckb_weekly_report_w7.md).
 
 ### Week 6 — CCC SDK Deep Dive (Tip Jar, xUDT, Spore)
 
