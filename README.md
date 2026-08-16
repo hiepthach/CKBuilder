@@ -25,20 +25,31 @@
 | 6 | CCC Mastery, Fiber Network, xUDT & Spore, Agentic Dev Skills | Done | [Report](./week6/ckb_weekly_report_w6.md) |
 | 7 | CKB-VM Deep Dive, Script Optimization, Molecule Serialization | Done | [Report](./week7/ckb_weekly_report_w7.md) |
 | 8 | Spore Protocol Deep Dive, DOB Rendering, NervosDAO | Done | [Report](./week8/ckb_weekly_report_w8.md) |
-| 9–12 | Capstone Project: DOB Credential & Badge Protocol | In Progress | — |
+| 9 | Project Setup & Provider Registration | Done | [Report](./week9/ckb_weekly_report_w9.md) |
+| 10–12 | Capstone Project: CKB Credential Registry | Planned | — |
 
 ---
 
-## Capstone Project: DOB Credential & Badge Protocol (Week 9–12)
+## Capstone Project: CKB Credential Registry (Week 9–12)
 
-Verifiable credentials (course completions, event attendance, skill certifications, employment history) issued as Spore DOBs organized in Clusters.
+A verifiable credentials system for course completion certificates built on Nervos CKB using the Spore Protocol.
 
-**Key Features:**
 - **Fully on-chain**: All credential data stored in Spore cells (DNA = credential metadata)
 - **Holder-owned**: Credentials are NFTs owned by the recipient
-- **Backed by locked CKB**: Issuing requires locking CKB, reclaimable by melting the credential
+- **Backed by locked CKB**: Issuing locks CKB; reclaimable by melting the credential
 - **Zero transfer fees**: CKB's model allows free credential transfers
 - **Cluster organization**: Issuers create Clusters; recipients hold DOBs
+
+**Project Repository:** [CertifyCKB](https://github.com/hiepthach/CertifyCKB)
+
+**Schedule:**
+
+| Week | Focus | Status |
+|------|-------|--------|
+| Week 9 | Project Setup & Provider Registration | ✅ Done |
+| Week 10 | Certificate Issuance & View | Planned |
+| Week 11 | Verification & Extended Features | Planned |
+| Week 12 | Polish & Documentation | Planned |
 
 ---
 
@@ -47,11 +58,11 @@ Verifiable credentials (course completions, event attendance, skill certificatio
 | Category | Tools / Libraries |
 |:---|:---|
 | **On-chain Languages** | Rust (ckb-std, ckb-testtool, ckb-debugger) |
-| **Off-chain Languages** | TypeScript / JavaScript, Python |
+| **Off-chain Languages** | TypeScript / JavaScript |
 | **On-chain SDK** | `ckb-std`, `ckb-testtool`, `ckb-debugger` |
-| **Off-chain SDK** | `@ckb-ccc/core`, `@ckb-ccc/connector-react` |
-| **Frontend** | React + TypeScript + Vite, Next.js |
-| **Dev Environment** | `offckb` (local devnet), CKB CLI |
+| **Off-chain SDK** | `@ckb-ccc/core`, `@ckb-ccc/connector-react`, `@spore-sdk/core` |
+| **Frontend** | React + TypeScript, Next.js 14 (App Router) |
+| **Dev Environment** | `offckb` (local devnet) |
 | **Serialization** | Molecule (zero-copy binary serialization) |
 | **Standards** | xUDT (Fungible Tokens), Spore / DOB (NFTs), NervosDAO |
 | **VM** | CKB-VM (RISC-V rv64imc) |
@@ -59,6 +70,21 @@ Verifiable credentials (course completions, event attendance, skill certificatio
 ---
 
 ## Key Projects
+
+### Week 9 — CKB Credential Registry (Capstone Kickoff)
+
+Initialized the capstone project scaffold, configured CKB devnet, and built the course provider registration flow via Spore Clusters.
+
+- **Project scaffold**: Next.js 14 + TypeScript + Tailwind CSS
+- **SDK integration**: CCC SDK + Spore SDK with OffCKB devnet
+- **Multi-wallet support**: JoyID, MetaMask, WalletConnect via `@ckb-ccc/connector-react`
+- **Cluster management**: `ClusterService` — createCluster, listClusters, Cluster creation form and provider dashboard
+
+**Project Documents:**
+- [Requirement Analysis](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Analysis.md) — project overview, feature spec, data architecture, technical decisions
+- [Design Specs](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Design_spec) — detailed specifications for Cluster, Encoder/Decoder, Certificate, Verification, Template, Batch Issuance, CKB Client, and UI Components
+
+> See details in [week9/ckb_weekly_report_w9.md](./week9/ckb_weekly_report_w9.md).
 
 ### Week 8 — Spore Protocol & DOB Rendering Analysis
 
@@ -163,10 +189,13 @@ CKBuilder/
 │   ├── ckb_vm_optimize_practice.md  # Script optimization practice
 │   └── molecule_practice_simple_lock.md  # Molecule serialization practice
 │
-└── week8/                          # Spore Protocol Deep Dive & DOB Rendering
-    ├── ckb_weekly_report_w8.md
-    ├── ANALYSIS_spore_contract.md   # Spore contract architecture analysis
-    └── DOB-Decoder-Standalone-Server_EXPLAINED.md  # DOB rendering analysis
+├── week8/                          # Spore Protocol Deep Dive & DOB Rendering
+│   ├── ckb_weekly_report_w8.md
+│   ├── ANALYSIS_spore_contract.md   # Spore contract architecture analysis
+│   └── DOB-Decoder-Standalone-Server_EXPLAINED.md  # DOB rendering analysis
+│
+└── week9/                          # Capstone: CKB Credential Registry — Setup
+    └── ckb_weekly_report_w9.md
 ```
 
 ---
@@ -199,6 +228,7 @@ cargo install ckb-debugger   # For debugging Rust scripts
 
 Each project has its own comprehensive `README.md` containing specific build, deploy, and execution instructions:
 
+- **Week 9 (CertifyCKB)**: CertifyCKB repository — [github.com/hiepthach/CertifyCKB](https://github.com/hiepthach/CertifyCKB)
 - **Week 5 (My Hash Lock)**: [week5/simple_lock_project/README.md](./week5/simple_lock_project/README.md)
 - **Week 4 (TinyDOB)**: [week4/tiny-dob-project/README.md](./week4/tiny-dob-project/README.md)
 - **Week 6 (Tip Jar)**: [week6/mini-tip-jar/README.md](./week6/mini-tip-jar/README.md)
