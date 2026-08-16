@@ -62,7 +62,7 @@ Based on [Project Schedule](https://github.com/hiepthach/CertifyCKB/tree/main/do
 
 | Week | Focus | Status |
 |------|-------|--------|
-| Week 9 | Project Setup & Provider Registration | ✅ Hoàn thành |
+| Week 9 | Project Setup & Provider Registration | ✅ Done |
 | Week 10 | Certificate Issuance & View | Planned |
 | Week 11 | Verification & Extended Features | Planned |
 | Week 12 | Polish & Documentation | Planned |
