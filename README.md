@@ -26,7 +26,8 @@
 | 7 | CKB-VM Deep Dive, Script Optimization, Molecule Serialization | Done | [Report](./week7/ckb_weekly_report_w7.md) |
 | 8 | Spore Protocol Deep Dive, DOB Rendering, NervosDAO | Done | [Report](./week8/ckb_weekly_report_w8.md) |
 | 9 | Project Setup & Provider Registration | Done | [Report](./week9/ckb_weekly_report_w9.md) |
-| 10–12 | Capstone Project: CKB Credential Registry | Planned | — |
+| 10 | Certificate Issuance & View | Done | [Report](./week10/ckb_weekly_report_w10.md) |
+| 11–12 | Capstone Project: CKB Credential Registry | In Progress | — |
 
 ---
 
@@ -42,12 +43,14 @@ A verifiable credentials system for course completion certificates built on Nerv
 
 **Project Repository:** [CertifyCKB](https://github.com/hiepthach/CertifyCKB)
 
+**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+
 **Schedule:**
 
 | Week | Focus | Status |
 |------|-------|--------|
 | Week 9 | Project Setup & Provider Registration | ✅ Done |
-| Week 10 | Certificate Issuance & View | Planned |
+| Week 10 | Certificate Issuance & View | ✅ Done |
 | Week 11 | Verification & Extended Features | Planned |
 | Week 12 | Polish & Documentation | Planned |
 
@@ -70,6 +73,26 @@ A verifiable credentials system for course completion certificates built on Nerv
 ---
 
 ## Key Projects
+
+### Week 10 — CKB Credential Registry: Certificate Issuance & Holder Dashboard
+
+Implemented full certificate issuance flow and holder dashboard.
+
+- **Certificate Issuance**: `encodeCertificateDNA()`, `issueCertificate()` — issue W3C VC-compliant course completion certificates
+- **Holder Dashboard**: `getHolderCertificates()` — view all certificates by wallet address
+- **On-chain Minting**: Integrated CCC SDK for certificate minting on CKB Testnet
+- **Mock vs Production**: Filter mock certificates in production; on-chain data prioritized
+- **Test Coverage**: 182 tests, all passing
+
+**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+
+**Completed Features (Week 10):**
+- ✅ Can issue a course completion certificate
+- ✅ Holder can view all certificates in dashboard
+- ✅ Full issuance flow works end-to-end
+- ✅ Certificate shows on holder dashboard
+
+> See details in [week10/ckb_weekly_report_w10.md](./week10/ckb_weekly_report_w10.md).
 
 ### Week 9 — CKB Credential Registry (Capstone Kickoff)
 
@@ -194,8 +217,11 @@ CKBuilder/
 │   ├── ANALYSIS_spore_contract.md   # Spore contract architecture analysis
 │   └── DOB-Decoder-Standalone-Server_EXPLAINED.md  # DOB rendering analysis
 │
-└── week9/                          # Capstone: CKB Credential Registry — Setup
-    └── ckb_weekly_report_w9.md
+├── week9/                          # Capstone: CKB Credential Registry — Setup
+│   └── ckb_weekly_report_w9.md
+│
+└── week10/                         # Capstone: Certificate Issuance & Holder Dashboard
+    └── ckb_weekly_report_w10.md
 ```
 
 ---
