@@ -27,7 +27,8 @@
 | 8 | Spore Protocol Deep Dive, DOB Rendering, NervosDAO | Done | [Report](./week8/ckb_weekly_report_w8.md) |
 | 9 | Project Setup & Provider Registration | Done | [Report](./week9/ckb_weekly_report_w9.md) |
 | 10 | Certificate Issuance & View | Done | [Report](./week10/ckb_weekly_report_w10.md) |
-| 11–12 | Capstone Project: CKB Credential Registry | In Progress | — |
+| 11 | Verification & Extended Features | Done | [Report](./week11/ckb_weekly_report_w11.md) |
+| 12 | Polish & Documentation | In Progress | — |
 
 ---
 
@@ -51,8 +52,8 @@ A verifiable credentials system for course completion certificates built on Nerv
 |------|-------|--------|
 | Week 9 | Project Setup & Provider Registration | ✅ Done |
 | Week 10 | Certificate Issuance & View | ✅ Done |
-| Week 11 | Verification & Extended Features | Planned |
-| Week 12 | Polish & Documentation | Planned |
+| Week 11 | Verification & Extended Features | ✅ Done |
+| Week 12 | Polish & Documentation | In Progress |
 
 ---
 
@@ -93,6 +94,19 @@ Implemented full certificate issuance flow and holder dashboard.
 - ✅ Certificate shows on holder dashboard
 
 > See details in [week10/ckb_weekly_report_w10.md](./week10/ckb_weekly_report_w10.md).
+
+### Week 11 — CKB Credential Registry: Certificate Melting, Batch Issuance & Template Management
+
+Implemented certificate melting, batch issuance, template management, and Spore SDK migration.
+
+- **Certificate Melting**: Holders can destroy their DOB cell to reclaim CKB capacity — replaced soft revocation with true on-chain destruction via `spore.meltSpore()`.
+- **Batch Issuance**: Full CSV/JSON batch upload, validation, fee estimation, and `BatchPreview` for review.
+- **Template Management**: Create, manage, and apply certificate templates with visual field customization.
+- **Spore SDK Migration**: Migrated from `@spore-sdk/core` to `@ckb-ccc/spore` for better CCC ecosystem integration.
+- **LocalCache**: Persistent state management across sessions with deduplication logic.
+- **Mock → Cache Refactor**: Removed mock branches from source; moved all mocking to test layer.
+
+> See details in [week11/ckb_weekly_report_w11.md](./week11/ckb_weekly_report_w11.md).
 
 ### Week 9 — CKB Credential Registry (Capstone Kickoff)
 
@@ -220,8 +234,11 @@ CKBuilder/
 ├── week9/                          # Capstone: CKB Credential Registry — Setup
 │   └── ckb_weekly_report_w9.md
 │
-└── week10/                         # Capstone: Certificate Issuance & Holder Dashboard
-    └── ckb_weekly_report_w10.md
+├── week10/                         # Capstone: Certificate Issuance & Holder Dashboard
+│   └── ckb_weekly_report_w10.md
+│
+└── week11/                         # Capstone: Verification & Extended Features
+    └── ckb_weekly_report_w11.md
 ```
 
 ---
