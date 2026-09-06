@@ -28,23 +28,24 @@
 | 9 | Project Setup & Provider Registration | Done | [Report](./week9/ckb_weekly_report_w9.md) |
 | 10 | Certificate Issuance & View | Done | [Report](./week10/ckb_weekly_report_w10.md) |
 | 11 | Verification & Extended Features | Done | [Report](./week11/ckb_weekly_report_w11.md) |
-| 12 | Polish & Documentation | In Progress | — |
+| 12 | Polish & Documentation | Done | [Report](./week12/ckb_weekly_report_w12.md) |
 
 ---
 
-## Capstone Project: CKB Credential Registry (Week 9–12)
+## Capstone Project: Credora (Week 9–12)
 
-A verifiable credentials system for course completion certificates built on Nervos CKB using the Spore Protocol.
+A verifiable credentials platform for course completion certificates built on Nervos CKB using the Spore Protocol.
 
 - **Fully on-chain**: All credential data stored in Spore cells (DNA = credential metadata)
 - **Holder-owned**: Credentials are NFTs owned by the recipient
 - **Backed by locked CKB**: Issuing locks CKB; reclaimable by melting the credential
 - **Zero transfer fees**: CKB's model allows free credential transfers
-- **Cluster organization**: Issuers create Clusters; recipients hold DOBs
+- **Institution organization**: Issuers create Institutions; recipients hold DOBs
+- **DID integration**: Supports `did:ckb` for recipient identification
 
-**Project Repository:** [CertifyCKB](https://github.com/hiepthach/CertifyCKB)
+**Project Repository:** [Credora_CKB](https://github.com/hiepthach/Credora_CKB)
 
-**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
 
 **Schedule:**
 
@@ -53,7 +54,7 @@ A verifiable credentials system for course completion certificates built on Nerv
 | Week 9 | Project Setup & Provider Registration | ✅ Done |
 | Week 10 | Certificate Issuance & View | ✅ Done |
 | Week 11 | Verification & Extended Features | ✅ Done |
-| Week 12 | Polish & Documentation | In Progress |
+| Week 12 | Polish & Documentation | ✅ Done |
 
 ---
 
@@ -64,7 +65,7 @@ A verifiable credentials system for course completion certificates built on Nerv
 | **On-chain Languages** | Rust (ckb-std, ckb-testtool, ckb-debugger) |
 | **Off-chain Languages** | TypeScript / JavaScript |
 | **On-chain SDK** | `ckb-std`, `ckb-testtool`, `ckb-debugger` |
-| **Off-chain SDK** | `@ckb-ccc/core`, `@ckb-ccc/connector-react`, `@spore-sdk/core` |
+| **Off-chain SDK** | `@ckb-ccc/core`, `@ckb-ccc/connector-react`, `@ckb-ccc/spore` |
 | **Frontend** | React + TypeScript, Next.js 14 (App Router) |
 | **Dev Environment** | `offckb` (local devnet) |
 | **Serialization** | Molecule (zero-copy binary serialization) |
@@ -74,6 +75,32 @@ A verifiable credentials system for course completion certificates built on Nerv
 ---
 
 ## Key Projects
+
+### Week 12 — Credora: Polish, DID Integration & Capstone Completion
+
+Completed rebranding, DID integration, integration tests, UI polish, and final documentation for capstone presentation.
+
+- **DID Integration**: `did:ckb` recipient support — recipients can receive certificates using their CKB DID
+- **Credora Branding**: Complete brand refresh with logo, favicon, and "Institution" naming
+- **Integration Tests**: Certificate lifecycle and batch issuance end-to-end tests
+- **UI Polish**: EmptyState, loading states, error handling, print styles
+- **Demo Materials**: Demo script, sample recipients CSV, screencast guide
+
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
+
+> See details in [week12/ckb_weekly_report_w12.md](./week12/ckb_weekly_report_w12.md).
+
+### Week 11 — Credora: Certificate Melting, Batch Issuance & Template Management
+
+Implemented certificate melting, batch issuance, template management, Spore SDK migration, and persistent cache.
+
+- **Certificate Melting**: Replaced revocation — holders can destroy DOBs to reclaim CKB capacity
+- **Spore SDK Migration**: Migrated from `@spore-sdk/core` to `@ckb-ccc/spore`
+- **Persistent LocalCache**: State management across sessions with deduplication
+- **Batch Issuance**: Full CSV/JSON upload flow with preview and progress tracking
+- **Template Management**: CRUD for certificate templates with visual config
+
+> See details in [week11/ckb_weekly_report_w11.md](./week11/ckb_weekly_report_w11.md).
 
 ### Week 10 — CKB Credential Registry: Certificate Issuance & Holder Dashboard
 
@@ -85,7 +112,7 @@ Implemented full certificate issuance flow and holder dashboard.
 - **Mock vs Production**: Filter mock certificates in production; on-chain data prioritized
 - **Test Coverage**: 182 tests, all passing
 
-**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
 
 **Completed Features (Week 10):**
 - ✅ Can issue a course completion certificate
@@ -231,14 +258,17 @@ CKBuilder/
 │   ├── ANALYSIS_spore_contract.md   # Spore contract architecture analysis
 │   └── DOB-Decoder-Standalone-Server_EXPLAINED.md  # DOB rendering analysis
 │
-├── week9/                          # Capstone: CKB Credential Registry — Setup
+├── week9/                          # Capstone: Credora — Setup
 │   └── ckb_weekly_report_w9.md
 │
 ├── week10/                         # Capstone: Certificate Issuance & Holder Dashboard
 │   └── ckb_weekly_report_w10.md
 │
-└── week11/                         # Capstone: Verification & Extended Features
-    └── ckb_weekly_report_w11.md
+├── week11/                         # Capstone: Melting, Batch Issuance & Templates
+│   └── ckb_weekly_report_w11.md
+│
+└── week12/                         # Capstone: Polish, DID Integration & Completion
+    └── ckb_weekly_report_w12.md
 ```
 
 ---

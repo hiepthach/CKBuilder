@@ -3,14 +3,14 @@
 **Name:** Hiep Thach
 **Week Ending:** 30-08-2026
 
-**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
 
 ---
 
 ### Courses Completed
 
 - **Week 11: Verification & Extended Features**
-  - [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — implemented certificate melting, batch issuance, template management, Spore SDK migration, and persistent cache.
+  - [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — implemented certificate melting, batch issuance, template management, Spore SDK migration, and persistent cache.
 
 ---
 
@@ -52,7 +52,7 @@
 
 ### Exercises and Practical Work
 
-- **Built [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — Week 11 Scope**
+- **Built [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — Week 11 Scope**
 
   **Completed Features:**
   - ✅ Certificate melting — holders can destroy certificates and reclaim CKB
@@ -73,7 +73,7 @@
 
 ### Project Progress vs Schedule
 
-Based on [Project Schedule](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
+Based on [Project Schedule](https://github.com/hiepthach/Credora_CKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
 
 | Week | Focus | Status |
 |------|-------|--------|

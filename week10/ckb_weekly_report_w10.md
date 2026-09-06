@@ -3,14 +3,14 @@
 **Name:** Hiep Thach
 **Week Ending:** 23-08-2026
 
-**Live App:** [https://ckb-credential-registry.vercel.app/](https://ckb-credential-registry.vercel.app/)
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
 
 ---
 
 ### Courses Completed
 
 - **Week 10: Certificate Issuance & View**
-  - [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — implemented certificate issuance and holder dashboard with full end-to-end flow.
+  - [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — implemented certificate issuance and holder dashboard with full end-to-end flow.
 
 ---
 
@@ -39,7 +39,7 @@
 
 ### Exercises and Practical Work
 
-- **Built [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — Week 10 Scope**
+- **Built [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — Week 10 Scope**
 
   **Completed Features:**
   - ✅ Can issue a course completion certificate
@@ -55,7 +55,7 @@
 
 ### Project Progress vs Schedule
 
-Based on [Project Schedule](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
+Based on [Project Schedule](https://github.com/hiepthach/Credora_CKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
 
 | Week | Focus | Status |
 |------|-------|--------|

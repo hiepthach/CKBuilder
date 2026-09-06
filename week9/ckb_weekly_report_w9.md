@@ -8,7 +8,7 @@
 ### Courses Completed
 
 - **Week 9: Project Setup & Provider Registration**
-  - [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — initialized the capstone project scaffold, configured CKB devnet, and built the course provider registration flow via Spore Clusters.
+  - [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — initialized the capstone project scaffold, configured CKB devnet, and built the course provider registration flow via Spore Clusters.
 
 ---
 
@@ -43,7 +43,7 @@
 
 ### Exercises and Practical Work
 
-- **Built [CKB Credential Registry](https://github.com/hiepthach/CertifyCKB) — Week 9 Scope**
+- **Built [CKB Credential Registry](https://github.com/hiepthach/Credora_CKB) — Week 9 Scope**
   - Project scaffold: Next.js 14, TypeScript, Tailwind CSS, ESLint
   - CCC SDK + Spore SDK integration with OffCKB devnet
   - Multi-wallet connection (JoyID, MetaMask, WalletConnect)
@@ -51,14 +51,14 @@
   - Cluster creation form and provider dashboard UI
 
   **Project Documents:**
-  - [Requirement Analysis](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Analysis.md) — project overview, feature spec, data architecture, technical decisions
-  - [Design Specs](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Design_spec) — detailed specifications for Cluster, Encoder/Decoder, Certificate, Verification, Template, Batch Issuance, CKB Client, and UI Components
+  - [Requirement Analysis](https://github.com/hiepthach/Credora_CKB/tree/main/doc/Requirement_analysis/Project_Analysis.md) — project overview, feature spec, data architecture, technical decisions
+  - [Design Specs](https://github.com/hiepthach/Credora_CKB/tree/main/doc/Design_spec) — detailed specifications for Cluster, Encoder/Decoder, Certificate, Verification, Template, Batch Issuance, CKB Client, and UI Components
 
 ---
 
 ### Project Progress vs Schedule
 
-Based on [Project Schedule](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
+Based on [Project Schedule](https://github.com/hiepthach/Credora_CKB/tree/main/doc/Requirement_analysis/Project_Schedule.md):
 
 | Week | Focus | Status |
 |------|-------|--------|
