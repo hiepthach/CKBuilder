@@ -29,6 +29,7 @@
 | 10 | Certificate Issuance & View | Done | [Report](./week10/ckb_weekly_report_w10.md) |
 | 11 | Verification & Extended Features | Done | [Report](./week11/ckb_weekly_report_w11.md) |
 | 12 | Polish & Documentation | Done | [Report](./week12/ckb_weekly_report_w12.md) |
+| 13 | Bug Fixes & Vellum Integration | Done | [Report](./week13/ckb_weekly_report_w13.md) |
 
 ---
 
@@ -89,6 +90,19 @@ Completed rebranding, DID integration, integration tests, UI polish, and final d
 **Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
 
 > See details in [week12/ckb_weekly_report_w12.md](./week12/ckb_weekly_report_w12.md).
+
+### Week 13 — Credora: Bug Fixes & Vellum Integration Design
+
+Fixed critical `meltCertificate` cross-certificate targeting bug, designed Vellum integration architecture, and added sample data for demo.
+
+- **`meltCertificate` Bug Fix**: Eliminated cross-certificate melt bug — DNA verification now strictly confirms cell matches target before melting
+- **Vellum Integration Design**: Phase 1 (did:ckb — live) and Phase 2 (dual-output tx — conceptual design)
+- **Sample Data**: CSV and JSON files for demonstration
+- **Regression Tests**: Multi-certificate melt scenarios added to test suite
+
+**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
+
+> See details in [week13/ckb_weekly_report_w13.md](./week13/ckb_weekly_report_w13.md).
 
 ### Week 11 — Credora: Certificate Melting, Batch Issuance & Template Management
 
@@ -267,8 +281,11 @@ CKBuilder/
 ├── week11/                         # Capstone: Melting, Batch Issuance & Templates
 │   └── ckb_weekly_report_w11.md
 │
-└── week12/                         # Capstone: Polish, DID Integration & Completion
-    └── ckb_weekly_report_w12.md
+├── week12/                         # Capstone: Polish, DID Integration & Completion
+│   └── ckb_weekly_report_w12.md
+│
+└── week13/                         # Bug Fixes & Vellum Integration Design
+    └── ckb_weekly_report_w13.md
 ```
 
 ---
