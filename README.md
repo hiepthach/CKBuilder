@@ -30,19 +30,19 @@
 | 11 | Verification & Extended Features | Done | [Report](./week11/ckb_weekly_report_w11.md) |
 | 12 | Polish & Documentation | Done | [Report](./week12/ckb_weekly_report_w12.md) |
 | 13 | Bug Fixes & Vellum Integration | Done | [Report](./week13/ckb_weekly_report_w13.md) |
+| 14 | Community Feedback & UX | Done | [Report](./week14/ckb_weekly_report_w14.md) |
 
 ---
 
-## Capstone Project: Credora (Week 9–12)
+## Capstone Project: Credora (Week 9–14)
 
 A verifiable credentials platform for course completion certificates built on Nervos CKB using the Spore Protocol.
 
 - **Fully on-chain**: All credential data stored in Spore cells (DNA = credential metadata)
 - **Holder-owned**: Credentials are NFTs owned by the recipient
 - **Backed by locked CKB**: Issuing locks CKB; reclaimable by melting the credential
-- **Zero transfer fees**: CKB's model allows free credential transfers
-- **Institution organization**: Issuers create Institutions; recipients hold DOBs
-- **DID integration**: Supports `did:ckb` for recipient identification
+- **DID integration**: Supports `did:ckb` for recipient identification (Vellum)
+- **W3C VC structure**: Standards-compliant verifiable credential format
 
 **Project Repository:** [Credora_CKB](https://github.com/hiepthach/Credora_CKB)
 
@@ -56,6 +56,8 @@ A verifiable credentials platform for course completion certificates built on Ne
 | Week 10 | Certificate Issuance & View | ✅ Done |
 | Week 11 | Verification & Extended Features | ✅ Done |
 | Week 12 | Polish & Documentation | ✅ Done |
+| Week 13 | Bug Fixes & Vellum Integration | ✅ Done |
+| Week 14 | Community Feedback & UX | ✅ Done |
 
 ---
 
@@ -77,92 +79,28 @@ A verifiable credentials platform for course completion certificates built on Ne
 
 ## Key Projects
 
-### Week 12 — Credora: Polish, DID Integration & Capstone Completion
+### Credora — Decentralized Credential Platform on CKB
 
-Completed rebranding, DID integration, integration tests, UI polish, and final documentation for capstone presentation.
+**Credora** is a decentralized credential issuance and verification platform built on Nervos CKB using the Spore Protocol. It enables educational institutions, DAOs, and course creators to issue tamper-proof, on-chain course completion diplomas as Spore Digital Objects (DOBs).
 
-- **DID Integration**: `did:ckb` recipient support — recipients can receive certificates using their CKB DID
-- **Credora Branding**: Complete brand refresh with logo, favicon, and "Institution" naming
-- **Integration Tests**: Certificate lifecycle and batch issuance end-to-end tests
-- **UI Polish**: EmptyState, loading states, error handling, print styles
-- **Demo Materials**: Demo script, sample recipients CSV, screencast guide
+**Key Features:**
+- On-chain certificate issuance via Spore DOBs with W3C VC structure
+- `did:ckb` recipient resolution (Vellum integration)
+- Single & batch issuance (CSV & JSON) with exact CKB capacity calculation
+- Printable paper certificates with customizable templates and themes
+- Certificate verification with expiration tracking
+- Token melting to reclaim CKB capacity
+- Light/dark theme with responsive design
 
-**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
+**Tech Stack:** Next.js 14, TypeScript, Tailwind CSS, `@ckb-ccc/core`, `@ckb-ccc/spore`, `@ckb-ccc/did-ckb`, Vitest
 
-> See details in [week12/ckb_weekly_report_w12.md](./week12/ckb_weekly_report_w12.md).
+**Links:**
+- [Project README](https://github.com/hiepthach/Credora_CKB) — full project documentation
+- [Project Report](https://github.com/hiepthach/Credora_CKB/blob/main/docs/PROJECT_REPORT.md) — comprehensive overview
+- [Live App](https://credora-ckb.vercel.app/)
+- [CKBuilders Showcase #36](https://github.com/Nervos-Community-Catalyst/CKBuilder-projects/issues/36)
 
-### Week 13 — Credora: Bug Fixes & Vellum Integration Design
-
-Fixed critical `meltCertificate` cross-certificate targeting bug, designed Vellum integration architecture, and added sample data for demo.
-
-- **`meltCertificate` Bug Fix**: Eliminated cross-certificate melt bug — DNA verification now strictly confirms cell matches target before melting
-- **Vellum Integration Design**: Phase 1 (did:ckb — live) and Phase 2 (dual-output tx — conceptual design)
-- **Sample Data**: CSV and JSON files for demonstration
-- **Regression Tests**: Multi-certificate melt scenarios added to test suite
-
-**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
-
-> See details in [week13/ckb_weekly_report_w13.md](./week13/ckb_weekly_report_w13.md).
-
-### Week 11 — Credora: Certificate Melting, Batch Issuance & Template Management
-
-Implemented certificate melting, batch issuance, template management, Spore SDK migration, and persistent cache.
-
-- **Certificate Melting**: Replaced revocation — holders can destroy DOBs to reclaim CKB capacity
-- **Spore SDK Migration**: Migrated from `@spore-sdk/core` to `@ckb-ccc/spore`
-- **Persistent LocalCache**: State management across sessions with deduplication
-- **Batch Issuance**: Full CSV/JSON upload flow with preview and progress tracking
-- **Template Management**: CRUD for certificate templates with visual config
-
-> See details in [week11/ckb_weekly_report_w11.md](./week11/ckb_weekly_report_w11.md).
-
-### Week 10 — CKB Credential Registry: Certificate Issuance & Holder Dashboard
-
-Implemented full certificate issuance flow and holder dashboard.
-
-- **Certificate Issuance**: `encodeCertificateDNA()`, `issueCertificate()` — issue W3C VC-compliant course completion certificates
-- **Holder Dashboard**: `getHolderCertificates()` — view all certificates by wallet address
-- **On-chain Minting**: Integrated CCC SDK for certificate minting on CKB Testnet
-- **Mock vs Production**: Filter mock certificates in production; on-chain data prioritized
-- **Test Coverage**: 182 tests, all passing
-
-**Live App:** [https://credora-ckb.vercel.app/](https://credora-ckb.vercel.app/)
-
-**Completed Features (Week 10):**
-- ✅ Can issue a course completion certificate
-- ✅ Holder can view all certificates in dashboard
-- ✅ Full issuance flow works end-to-end
-- ✅ Certificate shows on holder dashboard
-
-> See details in [week10/ckb_weekly_report_w10.md](./week10/ckb_weekly_report_w10.md).
-
-### Week 11 — CKB Credential Registry: Certificate Melting, Batch Issuance & Template Management
-
-Implemented certificate melting, batch issuance, template management, and Spore SDK migration.
-
-- **Certificate Melting**: Holders can destroy their DOB cell to reclaim CKB capacity — replaced soft revocation with true on-chain destruction via `spore.meltSpore()`.
-- **Batch Issuance**: Full CSV/JSON batch upload, validation, fee estimation, and `BatchPreview` for review.
-- **Template Management**: Create, manage, and apply certificate templates with visual field customization.
-- **Spore SDK Migration**: Migrated from `@spore-sdk/core` to `@ckb-ccc/spore` for better CCC ecosystem integration.
-- **LocalCache**: Persistent state management across sessions with deduplication logic.
-- **Mock → Cache Refactor**: Removed mock branches from source; moved all mocking to test layer.
-
-> See details in [week11/ckb_weekly_report_w11.md](./week11/ckb_weekly_report_w11.md).
-
-### Week 9 — CKB Credential Registry (Capstone Kickoff)
-
-Initialized the capstone project scaffold, configured CKB devnet, and built the course provider registration flow via Spore Clusters.
-
-- **Project scaffold**: Next.js 14 + TypeScript + Tailwind CSS
-- **SDK integration**: CCC SDK + Spore SDK with OffCKB devnet
-- **Multi-wallet support**: JoyID, MetaMask, WalletConnect via `@ckb-ccc/connector-react`
-- **Cluster management**: `ClusterService` — createCluster, listClusters, Cluster creation form and provider dashboard
-
-**Project Documents:**
-- [Requirement Analysis](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Requirement_analysis/Project_Analysis.md) — project overview, feature spec, data architecture, technical decisions
-- [Design Specs](https://github.com/hiepthach/CertifyCKB/tree/main/doc/Design_spec) — detailed specifications for Cluster, Encoder/Decoder, Certificate, Verification, Template, Batch Issuance, CKB Client, and UI Components
-
-> See details in [week9/ckb_weekly_report_w9.md](./week9/ckb_weekly_report_w9.md).
+See weekly progress in [week9–week14 reports](./week9/) for detailed development history.
 
 ### Week 8 — Spore Protocol & DOB Rendering Analysis
 
@@ -284,8 +222,11 @@ CKBuilder/
 ├── week12/                         # Capstone: Polish, DID Integration & Completion
 │   └── ckb_weekly_report_w12.md
 │
-└── week13/                         # Bug Fixes & Vellum Integration Design
-    └── ckb_weekly_report_w13.md
+├── week13/                         # Bug Fixes & Vellum Integration Design
+│   └── ckb_weekly_report_w13.md
+│
+└── week14/                         # Community Feedback & UX Enhancements
+    └── ckb_weekly_report_w14.md
 ```
 
 ---
