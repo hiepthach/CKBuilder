@@ -58,6 +58,7 @@ A verifiable credentials platform for course completion certificates built on Ne
 | Week 12 | Polish & Documentation | ✅ Done |
 | Week 13 | Bug Fixes & Vellum Integration | ✅ Done |
 | Week 14 | Community Feedback & UX | ✅ Done |
+| Week 15 | Vellum Phase 2 M1 | ✅ Done |
 
 ---
 
@@ -227,6 +228,9 @@ CKBuilder/
 │
 └── week14/                         # Community Feedback & UX Enhancements
     └── ckb_weekly_report_w14.md
+│
+└── week15/                         # Vellum Phase 2 M1 — Dual-Output Claim Cells
+    └── ckb_weekly_report_w15.md
 ```
 
 ---
