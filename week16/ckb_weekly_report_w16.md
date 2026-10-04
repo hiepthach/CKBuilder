@@ -67,8 +67,6 @@
 
   **Documentation:**
   - [Vellum Integration Design Spec](https://github.com/hiepthach/Credora_CKB/blob/main/docs/Design_spec/09_Vellum_Integration_Design.md) — updated with Phase 2 completion, melt architecture, sequence diagrams, and bug resolution details
-  - [Melt Vellum Claim Implementation Plan](https://github.com/hiepthach/Credora_CKB/blob/main/docs/superpowers/plans/2026-09-30-melt-vellum-claim.md) — step-by-step TDD plan for Claim Cell melt
-  - [Atomic Melt Claim Cell Implementation Plan](https://github.com/hiepthach/Credora_CKB/blob/main/docs/superpowers/plans/2026-10-02-atomic-melt-claim-cell.md) — architectural plan for atomic spore + claim burning
 
 ---
 
@@ -89,9 +87,22 @@
 
 ### Plan for Next Week (Week 17)
 
-- **Vellum Phase 4 & Profile Linking**
-  - Integrate bidirectional navigation between Credora certificates and Vellum builder profiles
-  - Test cross-app attestation rendering when Vellum M2 dashboard updates go live
-- **Capstone Final Preparation & Showcase**
-  - Prepare demo video / walkthrough and documentation for Capstone project completion
-  - Gather and address remaining community feedback from CKBuilders
+Investigate and address core identity, governance, and architectural concerns outlined in [`walkthrough/vellum-integration-next-steps-and-concerns.md`](https://github.com/hiepthach/Credora_CKB/blob/main/walkthrough/vellum-integration-next-steps-and-concerns.md):
+
+- **Multi-DID Wallet Selection & Cluster Binding (Concern 3)**
+  - Upgrade DID query to retrieve full wallet DID list (`listIssuerDids`) instead of defaulting to `records[0]`.
+  - Enhance `CertificateForm` UX: Add DID selector dropdown for multi-DID wallets and onboarding callout/guidance for 0-DID wallets when Vellum toggle is active.
+  - Support optional `issuerDid` binding at Cluster level while preserving Standard Mode (pure Spore DOB without DID requirement, zero onboarding friction).
+
+- **E2E Indexing Verification & Schema Registration (Pillar 1)**
+  - Verify on-chain Claim Cells and testnet transaction indexing on [dashboard.usevellum.xyz](https://dashboard.usevellum.xyz) and check reputation scoring (Policy v5) for `credora.course.v1`.
+  - Submit the canonical `credora.course.v1` schema manifest to the Vellum Schema Registry.
+
+- **Issuer Authenticity & Verification Framework (Concern 1)**
+  - Design Domain Verification mechanism (DNS TXT record `ckb-did=...` or `.well-known/did-ckb.json`) to cryptographically bind Issuer DIDs to real-world educational domains (displaying verified badges).
+  - Define multi-layered trust model: Spore Cluster immutable anchors + domain verification + Vellum Policy whitelisting.
+
+- **DID Lifecycle Handling & Two-Way Navigation (Concern 2 & Pillar 2)**
+  - Formalize edge-case handling for DID controller lock rotation and DID deactivation across Spore DOBs and Vellum Claim Cells.
+  - Implement bidirectional navigation: show recipient Vellum reputation badge on Credora, and deep-link back to Credora's visual SVG DOB from Vellum profiles.
+
