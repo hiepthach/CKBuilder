@@ -31,10 +31,13 @@
 | 12 | Polish & Documentation | Done | [Report](./week12/ckb_weekly_report_w12.md) |
 | 13 | Bug Fixes & Vellum Integration | Done | [Report](./week13/ckb_weekly_report_w13.md) |
 | 14 | Community Feedback & UX | Done | [Report](./week14/ckb_weekly_report_w14.md) |
+| 15 | Vellum Phase 2 M1 — Dual-Output Claim Cells | Done | [Report](./week15/ckb_weekly_report_w15.md) |
+| 16 | Vellum Phase 2 Completion & Atomic Melt | Done | [Report](./week16/ckb_weekly_report_w16.md) |
+| 17 | Issuer Identity Governance & Multi-DID Selection | Done | [Report](./week17/ckb_weekly_report_w17.md) |
 
 ---
 
-## Capstone Project: Credora (Week 9–14)
+## Capstone Project: Credora (Week 9–17)
 
 A verifiable credentials platform for course completion certificates built on Nervos CKB using the Spore Protocol.
 
@@ -59,6 +62,8 @@ A verifiable credentials platform for course completion certificates built on Ne
 | Week 13 | Bug Fixes & Vellum Integration | ✅ Done |
 | Week 14 | Community Feedback & UX | ✅ Done |
 | Week 15 | Vellum Phase 2 M1 | ✅ Done |
+| Week 16 | Vellum Phase 2 Completion & Atomic Melt | ✅ Done |
+| Week 17 | Issuer Identity Governance & Multi-DID Selection | ✅ Done |
 
 ---
 
@@ -226,11 +231,17 @@ CKBuilder/
 ├── week13/                         # Bug Fixes & Vellum Integration Design
 │   └── ckb_weekly_report_w13.md
 │
-└── week14/                         # Community Feedback & UX Enhancements
-    └── ckb_weekly_report_w14.md
+├── week14/                         # Community Feedback & UX Enhancements
+│   └── ckb_weekly_report_w14.md
 │
-└── week15/                         # Vellum Phase 2 M1 — Dual-Output Claim Cells
-    └── ckb_weekly_report_w15.md
+├── week15/                         # Vellum Phase 2 M1 — Dual-Output Claim Cells
+│   └── ckb_weekly_report_w15.md
+│
+├── week16/                         # Vellum Phase 2 Completion & Atomic Claim Cell Melt
+│   └── ckb_weekly_report_w16.md
+│
+└── week17/                         # Issuer Identity Governance & Multi-DID Selection
+    └── ckb_weekly_report_w17.md
 ```
 
 ---
