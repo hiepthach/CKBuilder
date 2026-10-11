@@ -28,9 +28,6 @@
   - Extended `ClusterDescription` (the Spore Cluster metadata JSON) with an optional `issuerDid?: string` field, storing the bound organizational identity alongside the course name and description.
   - When creating certificates within a bound cluster, `CertificateForm` automatically pre-populates and locks the `issuerDid` field, removing the need for repeated manual selection and preventing accidental DID mismatches at the per-certificate level.
 
-- **Progressive Enhancement Architecture**
-  - Confirmed and enforced the design principle: Standard Mode (pure Spore DOB, ~900 CKB) remains the default. Vellum DID and Claim Cell features are strictly additive — enabled only when the user activates the "Add to Vellum" toggle, with zero mandatory onboarding friction for issuers who don't use Vellum.
-
 ---
 
 ### Exercises and Practical Work
@@ -60,9 +57,6 @@
   - `c5782d2` — feat(issue): auto-populate and pre-select cluster's bound issuerDid in CertificateForm
   - `d5365fd` — Merge pull request #4 from hiepthach/feature/cluster-did-binding
 
-  **Documentation:**
-  - [Issuer Identity & Issuance Evaluation (Week 17)](https://github.com/hiepthach/Credora_CKB/blob/main/walkthrough/week%2017/issuer-identity-and-issuance-evaluation.md) — technical deep-dive covering multi-DID governance, 3-case UX model, cluster–DID binding architecture, risk matrix, and execution plan
-
 ---
 
 ### Project Progress vs Schedule
@@ -81,13 +75,11 @@
 
 ---
 
-### Plan for Next Week (Week 18)
+### Plan
 
-- **E2E Vellum Dashboard Verification & Schema Registration (Pillar 1)**
+- **E2E Vellum Dashboard Verification & Schema Registration**
   - Verify that Claim Cells minted by Credora are correctly indexed on [dashboard.usevellum.xyz](https://dashboard.usevellum.xyz)
   - Check that Vellum Reputation Engine (Policy v5) scores `credora.course.v1` claims
   - Submit `credora.course.v1` schema manifest to Vellum Schema Registry
 
-- **Issuer Domain Verification Design (Concern 1)**
-  - Design DNS TXT / `.well-known/did-ckb.json` domain verification mechanism to bind issuer DIDs to real-world educational domains
-  - Prototype badge display ("Verified: hcmut.edu.vn") on certificate detail pages
+
